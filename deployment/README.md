@@ -1,3 +1,8 @@
+***********
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install my-release bitnami/kafka
+***********
+
 ec2-user@ip-10-1-2-75:~> export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ec2-user@ip-10-1-2-75:~> export HELM_KUBEAPISERVER=https://127.0.0.1:6443
 ec2-user@ip-10-1-2-75:~> helm repo add bitnami https://charts.bitnami.com/bitnami
