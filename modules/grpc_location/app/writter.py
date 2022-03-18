@@ -13,13 +13,13 @@ stub = location_pb2_grpc.LocationServiceStub(channel)
 
 # Update this with desired payload
 location1 = location_pb2.LocationMessage(
-    person_id="25",
+    person_id="8",
     latitude="25",
     longitude='-25',
 )
 
 location2 = location_pb2.LocationMessage(
-    person_id="15",
+    person_id="9",
     latitude="15",
     longitude='-15',
 )
