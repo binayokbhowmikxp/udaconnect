@@ -1,0 +1,9 @@
+The monolithic application has got three component 1. persons 2. connections and 3. locations.
+The decision was made to create two microservice , one comprising of both persons and connections while the second one having only locations.
+The decision was because persons and connections are co-dependent on each other and it's better to keep them together for simplicity.
+The location can easily be put into a seperate microservice.
+
+For gRPC , we have two microservice. 1. grpc_location 2. grpc_location_consumer_kafka. 
+The grpc_location puts the location details in json format in kafka topic "test" (default topic has been used ) and the grpc_location_consumer_kafka picks 
+the message from kafka "test" topic. In  this design, it has been assumed that people meet each other often and there will be considerable data volume
+hence gRPC has been used along with Message Queue (kafka) 
