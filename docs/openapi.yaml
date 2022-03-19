@@ -1,0 +1,133 @@
+openapi: 3.0.0
+info:
+  title: Udaconnect
+  description: Udacity Project for Cloud Native
+  version: 1.0.0
+paths:
+  /locations:
+    get:
+      summary: Get locations
+      description:     Given a location id, display the location details
+      parameters:
+        - name: location_id
+          in: query
+          description: Input a location
+          required: false
+          style: form
+          explode: true
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Displays if matching location found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+        '400':
+          description: bad request
+    post:
+      summary: Saves a location details
+      description: Records a location information
+      requestBody:
+        description: Location data to be saved
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '201':
+          description: Location successfully added
+        '400':
+          description: bad request
+  /persons:
+    get:
+      summary: Get persons record
+      description: persons record
+      parameters:
+        - name: person_id
+          in: query
+          description:  person_id
+          required: false
+          style: form
+          explode: true
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        '400':
+          description: bad input parameter
+    post:
+      summary: Adds a person
+      requestBody:
+        description: Person to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '201':
+          description: Person created
+        '400':
+          description: invalid input, object invalid
+components:
+  schemas:
+    Location:
+      required:
+        - creation_time
+        - id
+        - latitud
+        - longitude
+        - person_id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        person_id:
+          type: integer
+          example: 1
+        longitude:
+          type: string
+          example: '-25.87765'
+        latitude:
+          type: string
+          example: '15.567712'
+        creation_time:
+          type: string
+          format: date-time
+    Person:
+      required:
+        - company_name
+        - first_name
+        - id
+        - last_name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 5
+        first_name:
+          type: string
+          example: XYZ
+        last_name:
+          type: string
+          example: ABC
+        company_name:
+          type: string
+          example: Startup corporation
