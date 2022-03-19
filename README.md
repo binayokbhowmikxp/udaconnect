@@ -100,4 +100,21 @@ These pages should also load on your web browser:
 
 #### Kafka Deployment
 
-Kafka is deployed using helm. Install heml(https://helm.sh/docs/intro/install/) 
+Kafka is deployed using helm. Install helm(https://helm.sh/docs/intro/install/)
+
+#### Install Kafka
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+helm install my-release bitnami/kafka 
+
+## gRPC client for location service 
+
+The gRPC client is deployed as part of location_producer.yaml deployment. The client is located in binayokbhowmikxp/location-producer:latest container image. Inside the container image the client file written in python is /app/writter.py
+
+kubectl exec -it location-producer-<xxxxx>-<xxxx> -- /bin/bash
+cd /app
+python3 writter.py
+
+The value of <xxxxx>-<xxxx> can be obtained using kubectl get pods
+    
+
