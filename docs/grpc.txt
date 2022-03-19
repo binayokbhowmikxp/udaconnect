@@ -21,3 +21,13 @@ service LocationService {
   rpc Create(LocationMessage) returns (LocationMessage);
   rpc Get(Empty) returns (LocationMessageList);
 }
+
+
+gRPC client
+------------
+
+The gRPC client is deployed as part of location_producer.yaml deployment. The client is located in binayokbhowmikxp/location-producer:latest container image. Inside the container image the client file written in python is /app/writter.py
+
+kubectl exec -it location-producer-- -- /bin/bash cd /app python3 writter.py
+
+The value of - can be obtained using kubectl get pods
