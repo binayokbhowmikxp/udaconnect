@@ -32,9 +32,9 @@ def save_in_db(location):
     print(insert)
     conn.execute(insert)
 
-
-for location in kafka_consumer:
-    message = location.value.decode('utf-8')
-    print('{}'.format(message))
-    location_message = json.loads(message)
-    save_in_db(location_message)
+while True:
+   for location in kafka_consumer:
+       message = location.value.decode('utf-8')
+       print('{}'.format(message))
+       location_message = json.loads(message)
+       save_in_db(location_message)
